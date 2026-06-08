@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode } from "react";
+import { Children, ReactNode } from "react";
 import { motion } from "framer-motion";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
@@ -69,14 +69,14 @@ export const AnimatedReveal = ({
       viewport={{ once: true, margin: "-100px" }}
       variants={stagger ? containerVariants : itemVariants}
     >
-      {stagger && Array.isArray(children) ? (
-        children.map((child, index) => (
+      {stagger ? (
+        Children.map(children, (child, index) => (
           <motion.div key={index} variants={itemVariants}>
             {child}
           </motion.div>
         ))
       ) : (
-        {children}
+        children
       )}
     </motion.div>
   );
