@@ -1,0 +1,121 @@
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: "Sora", sans-serif;
+  --font-body: "Inter", sans-serif;
+}
+
+* {
+  @apply scroll-smooth;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-navy-900 text-text-light;
+  font-family: var(--font-body);
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  @apply font-bold tracking-tight;
+}
+
+h1 {
+  @apply text-h1;
+}
+
+h2 {
+  @apply text-h2;
+}
+
+h3 {
+  @apply text-h3;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    @apply !animate-none !transition-none;
+  }
+}
+
+/* Utility Classes */
+.gradient-mesh {
+  background: linear-gradient(135deg, rgba(30, 91, 184, 0.15) 0%, rgba(46, 111, 214, 0.1) 100%);
+}
+
+.gradient-mesh-dark {
+  background: linear-gradient(135deg, rgba(11, 31, 58, 0.8) 0%, rgba(8, 22, 39, 0.9) 100%);
+}
+
+.glass {
+  @apply backdrop-blur-xs bg-white/10 border border-white/20;
+}
+
+.glass-dark {
+  @apply backdrop-blur-xs bg-navy-900/80 border border-white/10;
+}
+
+.text-gradient {
+  @apply bg-gradient-to-r from-blue-accent to-blue-light bg-clip-text text-transparent;
+}
+
+.glow-text {
+  @apply drop-shadow-[0_0_15px_rgba(46,111,214,0.4)];
+}
+
+/* Animation Utilities */
+.animate-in {
+  @apply animate-fadeIn;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Skip to Content Link */
+.skip-to-content {
+  @apply absolute left-0 top-0 -translate-y-full bg-blue-primary px-4 py-2 text-white focus:translate-y-0;
+}
+
+/* Focus Styles */
+:focus-visible {
+  @apply outline-2 outline-offset-2 outline-blue-accent;
+}
