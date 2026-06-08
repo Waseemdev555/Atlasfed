@@ -1,8 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Card } from "@/components/ui/Card";
 import { Shield, Zap, Target } from "lucide-react";
+import aboutImage from "../../../images/Built for the Mission.png";
 
 const FEATURES = [
   {
@@ -55,13 +57,22 @@ export const About = () => {
           {/* Image Card */}
           <motion.div variants={itemVariants}>
             <Card variant="glass" hoverable className="overflow-hidden">
-              <div className="relative w-full aspect-square bg-gradient-to-br from-blue-accent/20 to-blue-light/10 rounded-lg flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-32 h-32 mx-auto mb-4 bg-blue-accent/10 rounded-full flex items-center justify-center">
-                    <div className="text-blue-accent text-6xl">🌐</div>
-                  </div>
-                  <p className="text-text-light text-small">
-                    Federal IT Innovation
+              <div className="relative w-full aspect-square rounded-3xl overflow-hidden shadow-glow border border-white/10">
+                <div className="absolute inset-0 bg-blue-accent/10" />
+                <Image
+                  src={aboutImage}
+                  alt="Atlas Federal Technologies team working on a mission"
+                  fill
+                  className="object-cover"
+                  quality={90}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy-900/80 via-navy-900/10 to-transparent" />
+                <div className="absolute bottom-6 left-6 text-left">
+                  <p className="text-small uppercase tracking-[0.35em] text-blue-accent/90 mb-2">
+                    Built for the Mission
+                  </p>
+                  <p className="text-text-light max-w-xs leading-relaxed">
+                    Secure transformation work for public sector operations.
                   </p>
                 </div>
               </div>

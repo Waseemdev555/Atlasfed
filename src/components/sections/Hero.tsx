@@ -1,10 +1,12 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { ArrowDown } from "lucide-react";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+import heroImage from "../../../images/Homepage Background.png";
 
 export const Hero = () => {
   const prefersReducedMotion = useReducedMotion();
@@ -137,6 +139,16 @@ export const Hero = () => {
 
       {/* Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-navy-900 via-navy-900 to-navy-800 z-0" />
+      <div className="absolute inset-0 opacity-70 overflow-hidden">
+        <Image
+          src={heroImage}
+          alt="Team collaborating on federal IT strategy"
+          fill
+          className="object-cover opacity-30"
+          priority
+        />
+      </div>
+      <div className="absolute inset-0 bg-gradient-to-t from-navy-900/95 via-navy-900/70 to-transparent z-0" />
 
       {/* Content */}
       <motion.div
