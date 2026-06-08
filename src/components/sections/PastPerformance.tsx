@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Card } from "@/components/ui/Card";
 import { CASE_STUDIES } from "@/data/case-studies";
@@ -15,25 +15,34 @@ const AnimatedCounter = ({
   label: string;
 }) => {
   const [count, setCount] = useState(from);
+  const [started, setStarted] = useState(false);
 
-  motion.useMotionValueEvent = motion.useMotionValueEvent || (() => {});
+  useEffect(() => {
+    if (!started) {
+      return;
+    }
+
+    let current = from;
+    const interval = setInterval(() => {
+      if (current < to) {
+        current += Math.ceil((to - from) / 60);
+        setCount(Math.min(current, to));
+      } else {
+        clearInterval(interval);
+      }
+    }, 30);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [started, from, to]);
 
   return (
     <div className="text-center">
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        onViewportEnter={() => {
-          let current = from;
-          const interval = setInterval(() => {
-            if (current < to) {
-              current += Math.ceil((to - from) / 60);
-              setCount(Math.min(current, to));
-            } else {
-              clearInterval(interval);
-            }
-          }, 30);
-        }}
+        onViewportEnter={() => setStarted(true)}
         viewport={{ once: true }}
         className="text-4xl font-bold text-blue-accent mb-2"
       >
